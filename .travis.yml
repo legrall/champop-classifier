@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  = docker build -t champopclassifier:dev .
+= echo Wassup
 
 # command to install dependencies
 script: pytest
