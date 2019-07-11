@@ -2,6 +2,9 @@ FROM python:3.6.8-slim as base
 
 WORKDIR /app
 
+RUN pip install pytest-cov pytest codecov
+
+
 COPY . .
 RUN pip install .
 
