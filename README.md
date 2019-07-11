@@ -1,2 +1,3 @@
-# champop-classifier
+# Champop Classifier
+
 Machine learning Classifier for Champop
