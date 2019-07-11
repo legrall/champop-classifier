@@ -5,7 +5,7 @@ services:
 
 before_install:
   - docker build -t champop-classifier:dev -f Dockerfile-dev .
-  - docker run -it -v $(PWD):/opt/test champop-classifier:dev /bin/sh -c "pytest --cov-report term --cov=/opt/test"
+  - docker run -it -v $(TRAVIS_BUILD_DIR):/opt/test champop-classifier:dev /bin/sh -c "pytest --cov-report term --cov=/opt/test"
 
 # command to install dependencies
 script: pytest --cov-report term --cov=app/test
