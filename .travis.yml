@@ -3,8 +3,10 @@ language: python
 services:
   - docker
 
+before_script:
+  = docker build -t champop-classifier:dev -f Dockerfile-dev .
 # command to install dependencies
-script: make test
+script: docker run -it -v $(PWD):/app $(CONTAINER_NAME):dev pytest
 branches:
   only:
     - master
