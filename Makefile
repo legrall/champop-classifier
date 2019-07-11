@@ -16,7 +16,7 @@ bash_dev:
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev bash
 
 build_prod:
-	docker build -t $(CONTAINER_NAME): .
+	docker build -t $(CONTAINER_NAME):latest .
 
 run:
-	docker run -it -p 8998:8080 $(CONTAINER_NAME):oc
+	docker run -it -p 8998:8080 $(CONTAINER_NAME):latest
