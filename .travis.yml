@@ -5,7 +5,7 @@ services:
 
 before_install:
   - docker build -t champop-classifier:dev .
-  - docker run -it champop-classifier:dev bash
+  - docker run -it champop-classifier:dev /bin/sh -c "pytest"
 
 # command to install dependencies
 script: pytest
