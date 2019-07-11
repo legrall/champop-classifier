@@ -5,12 +5,10 @@ services:
 
 before_install:
   - docker build -t champop-classifier:dev -f Dockerfile-dev .
-  - docker run -it -v $TRAVIS_BUILD_DIR:/opt/test champop-classifier:dev /bin/sh -c "pytest --cov-report term --cov=/opt/test"
+  - docker run -it -v $TRAVIS_BUILD_DIR:/opt/test champop-classifier:dev /bin/sh -c "pytest -cov=converter ."
 
 # command to install dependencies
-script: pytest --cov-report term --cov=app/test
+script: pytest --cov=converter .
 branches:
   only:
     - master
-after_success:
-    - codecov
