@@ -11,4 +11,4 @@ before_install:
 script: pytest --cov=converter .
 branches:
   only:
-    - master
+    - CI
