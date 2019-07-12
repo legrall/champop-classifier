@@ -5,10 +5,10 @@ services:
 
 before_install:
   - docker build -t champop-classifier:dev -f Dockerfile-dev .
-  - docker run -it champop-classifier:dev /bin/sh -c "pytest --cov=converter ."
+  - docker run -it champop-classifier:dev /bin/sh -c "pytest"
 
 # command to install dependencies
-script: pytest --cov=converter .
+script: pytest
 branches:
   only:
     - CI
