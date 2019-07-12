@@ -7,7 +7,7 @@ RUN pip install pytest-cov pytest codecov
 COPY requirements.txt /tmp
 RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
 
-RUN COPY . .
+COPY . .
 
 ENV FLASK_APP=champop-classifier
 ENV FLASK_ENV=development
