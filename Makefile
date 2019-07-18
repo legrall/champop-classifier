@@ -9,7 +9,7 @@ build_dev:
 dev:
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev
 
-test:
+test_dev:
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev pytest
 
 bash_dev:

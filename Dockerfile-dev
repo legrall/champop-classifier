@@ -1,12 +1,7 @@
 FROM python:3.6.8-slim as base
 
-ENV FLASK_APP=champop-classifier
+ENV FLASK_APP=classifier
 ENV FLASK_ENV=development
-
-RUN apt-get -y update && apt-get install -y ffmpeg sox \
-   libsox-fmt-all \
-   && apt-get clean \
-   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
