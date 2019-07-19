@@ -3,6 +3,9 @@
 CONTAINER_NAME = champop-classifier
 current_dir := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
+test_ci:
+	true
+
 build_dev: 
 	docker build -t $(CONTAINER_NAME):dev -f Dockerfile-dev .
 
