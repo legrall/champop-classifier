@@ -27,6 +27,7 @@ before_install:
 # the whole Travis build is considered a failure).
 script:
   - 'make test'
+  - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
   - 'make image'
 
 # only execute the following instructions in
