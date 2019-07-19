@@ -12,13 +12,13 @@ build_dev:
 dev:
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev
 
-test:
+test: build_dev
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev pytest
 
 bash_dev:
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev bash
 
-build_prod:
+image:
 	docker build -t $(CONTAINER_NAME):latest .
 
 run:

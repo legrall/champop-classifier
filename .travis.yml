@@ -23,8 +23,8 @@ before_install:
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
 script:
-  - 'make test_ci'
-  # - 'make image'
+  - 'make test'
+  - 'make image'
 
 # only execute the following instructions in
 # the case of a success (failing at this point
