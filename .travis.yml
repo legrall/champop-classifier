@@ -18,7 +18,8 @@ services:
 # prepare the machine before any code
 # installation scripts
 before_install:
-  - './.travis/main.sh'
+  - ls -l ./.travis/main.sh
+  - ./.travis/main.sh
 
 # first execute the test suite.
 # after the test execution is done and didn't
