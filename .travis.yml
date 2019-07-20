@@ -43,9 +43,10 @@ script:
 # environment in the settings pannel.
 # after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin  ;
+      echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin ;
       docker tag legrall/champop-classifier:$VERSION legrall/champop-classifier:latest ;
-      docker push legrall/champop-classifier:$VERSION legrall/champop-classifier:latest ;
+      docker push legrall/champop-classifier:latest ;
+      docker push legrall/champop-classifier:$VERSION ;
     fi
 
 # don't notify me when things fail
