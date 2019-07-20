@@ -29,10 +29,9 @@ services:
 script:
   - VERSION=$(python setup.py --version)
   - echo $VERSION
-  - echo $TEST_C
   - 'make test'
   - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | sudo xargs rm -rf
-  - 'make image'
+  - docker build -t legrall/champop-classifier:$VERSION .
 
 # only execute the following instructions in
 # the case of a success (failing at this point
@@ -43,10 +42,10 @@ script:
 # page of your repository and then change the 
 # environment in the settings pannel.
 # after_success:
-#   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-#       docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
-#       make push-image ;
-#     fi
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+      echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin  ;
+      docker tag legrall/champop-classifier:$VERSION legrall/champop-classifier:latest
+    fi
 
 # don't notify me when things fail
 notifications:

@@ -1,6 +1,6 @@
 #!/usr/bin/env make -f
 
-CONTAINER_NAME = champop-classifier
+CONTAINER_NAME = legrall/champop-classifier
 current_dir := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 test_ci:
