@@ -29,9 +29,13 @@ services:
 script:
   - VERSION=$(python setup.py --version)
   - echo $VERSION
-  - 'make test'
+  # - 'make test'
   - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | sudo xargs rm -rf
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin 
   - docker build -t legrall/champop-classifier:$VERSION .
+  - docker tag legrall/champop-classifier:$VERSION legrall/champop-classifier:latest ;
+  - docker push legrall/champop-classifier:latest ;
+  - docker push legrall/champop-classifier:$VERSION ;
 
 # only execute the following instructions in
 # the case of a success (failing at this point
@@ -43,10 +47,7 @@ script:
 # environment in the settings pannel.
 # after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin ;
-      docker tag legrall/champop-classifier:$VERSION legrall/champop-classifier:latest ;
-      docker push legrall/champop-classifier:latest ;
-      docker push legrall/champop-classifier:$VERSION ;
+      echo master
     fi
 
 # don't notify me when things fail
