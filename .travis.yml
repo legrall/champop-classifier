@@ -17,15 +17,19 @@ services:
 
 # prepare the machine before any code
 # installation scripts
-before_install:
-  - ls -l ./.travis/main.sh
-  - ./.travis/main.sh
+# before_install:
+
+#   - ls -l ./.travis/main.sh
+#   - ./.travis/main.sh
 
 # first execute the test suite.
 # after the test execution is done and didn't
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
 script:
+  - VERSION = $(python setup.py --version)
+  - echo $VERSION
+  - echo $TEST_C
   - 'make test'
   - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | sudo xargs rm -rf
   - 'make image'
