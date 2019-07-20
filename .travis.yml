@@ -29,25 +29,16 @@ services:
 script:
   - VERSION=$(python setup.py --version)
   - echo $VERSION
-  # - 'make test'
+  - 'make test'
   - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | sudo xargs rm -rf
-  - echo $DOCKER_PWD | docker login -u $DOCKER_ID --password-stdin 
-  - docker build -t legrall/champop-classifier:$VERSION .
-  - docker tag legrall/champop-classifier:$VERSION legrall/champop-classifier:latest ;
-  - docker push legrall/champop-classifier:latest ;
-  - docker push legrall/champop-classifier:$VERSION ;
+  - make image
 
-# only execute the following instructions in
-# the case of a success (failing at this point
-# won't mark the build as a failure).
-# To have `DOCKER_USERNAME` and `DOCKER_PASSWORD`
-# filled you need to either use `travis`' cli 
-# and then `travis set ..` or go to the travis
-# page of your repository and then change the 
-# environment in the settings pannel.
-# after_success:
+after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      echo master
+      echo $DOCKER_PWD | docker login -u $DOCKER_ID --password-stdin  ;
+      docker tag legrall/champop-classifier:latest legrall/champop-classifier:$VERSION ;
+      docker push legrall/champop-classifier:latest ;
+      docker push legrall/champop-classifier:$VERSION ;
     fi
 
 # don't notify me when things fail
