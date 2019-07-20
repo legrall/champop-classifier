@@ -1,7 +1,10 @@
 #!/usr/bin/env make -f
 
-CONTAINER_NAME = champop-classifier
+CONTAINER_NAME = legrall/champop-classifier
 current_dir := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
+test_ci:
+	true
 
 build_dev: 
 	docker build -t $(CONTAINER_NAME):dev -f Dockerfile-dev .
@@ -9,13 +12,13 @@ build_dev:
 dev:
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev
 
-test:
+test: build_dev
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev pytest
 
 bash_dev:
 	docker run -it -p 8999:5000 -v $(current_dir):/app $(CONTAINER_NAME):dev bash
 
-build_prod:
+image:
 	docker build -t $(CONTAINER_NAME):latest .
 
 run:
