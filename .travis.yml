@@ -27,7 +27,7 @@ services:
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
 script:
-  - VERSION = $(python setup.py --version)
+  - VERSION=$(python setup.py --version)
   - echo $VERSION
   - echo $TEST_C
   - 'make test'
