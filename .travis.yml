@@ -31,7 +31,7 @@ script:
   - echo $VERSION
   # - 'make test'
   - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | sudo xargs rm -rf
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin 
+  - echo $DOCKER_PWD | docker login -u $DOCKER_ID --password-stdin 
   - docker build -t legrall/champop-classifier:$VERSION .
   - docker tag legrall/champop-classifier:$VERSION legrall/champop-classifier:latest ;
   - docker push legrall/champop-classifier:latest ;
