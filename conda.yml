@@ -1,0 +1,4 @@
+name: champop-classifer
+dependencies:
+  - matplotlib
+  - pillow
