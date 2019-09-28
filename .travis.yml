@@ -1,0 +1,46 @@
+language: bash
+
+# make use of vm's 
+sudo: 'required'
+
+services:
+  - docker
+
+# before_install:
+#   - docker build -t champop-classifier:dev -f Dockerfile-dev .
+#   - docker run -it champop-classifier:dev /bin/sh -c "pytest"
+
+# # command to install dependencies
+# script: pytest
+
+
+
+# prepare the machine before any code
+# installation scripts
+# before_install:
+
+#   - ls -l ./.travis/main.sh
+#   - ./.travis/main.sh
+
+# first execute the test suite.
+# after the test execution is done and didn't
+# fail, build the images (if this step fails
+# the whole Travis build is considered a failure).
+script:
+  - VERSION=$(python setup.py --version)
+  - echo $VERSION
+  - 'make test'
+  - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | sudo xargs rm -rf
+  - make image
+
+after_success:
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+      echo $DOCKER_PWD | docker login -u $DOCKER_ID --password-stdin  ;
+      docker tag legrall/champop-classifier:latest legrall/champop-classifier:$VERSION ;
+      docker push legrall/champop-classifier:latest ;
+      docker push legrall/champop-classifier:$VERSION ;
+    fi
+
+# don't notify me when things fail
+notifications:
+  email: false

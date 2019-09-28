@@ -1,12 +1,23 @@
 FROM python:3.6.8-slim as base
 
+<<<<<<< HEAD
 ENV FLASK_APP=classifier
 ENV FLASK_ENV=development
 
 WORKDIR /app
+=======
+WORKDIR /app
 
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install pytest-cov pytest codecov
+
+COPY requirements.txt /tmp
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+>>>>>>> master
+
+COPY . .
+
+ENV FLASK_APP=champop-classifier
+ENV FLASK_ENV=development
 
 EXPOSE 5000
 
