@@ -1,4 +1,13 @@
-name: champop-classifer
+name: champop-classifier
 dependencies:
   - matplotlib
   - pillow
+  - numpy
+  - pandas
+  - imageio
+  - imgaug
+  - pip
+  - pip:
+    - opencv-python
+    - mrcnn
+    - pickle-mixin
