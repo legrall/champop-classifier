@@ -1,0 +1,15 @@
+name: champop-classifier
+dependencies:
+  - matplotlib
+  - pillow
+  - numpy
+  - pandas
+  - imageio
+  - imgaug
+  - tensorflow=1.13.1
+  - keras
+  - pip
+  - pip:
+    - opencv-python
+    - mrcnn
+    - pickle-mixin

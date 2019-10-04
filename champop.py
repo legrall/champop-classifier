@@ -37,7 +37,10 @@ class ChampopConfig(Config):
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1
-
+    GPU_COUNT = 3
+    IMAGES_PER_GPU = 2
+    # Number of training steps per epoch
+    STEPS_PER_EPOCH = 100
     IMAGE_SHAPE = np.array([IMAGE_HEIGHT, IMAGE_WIDTH, 3])
 
 

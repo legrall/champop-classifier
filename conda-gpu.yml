@@ -1,10 +1,10 @@
-name: champop-classifier
+name: champop-classifier-gpu
 dependencies:
   - matplotlib
   - pillow
   - numpy
   - pandas
-  - tensorflow
+  - tensorflow-gpu=1.13.1
   - keras
   - imageio
   - imgaug
