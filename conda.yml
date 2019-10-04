@@ -4,6 +4,8 @@ dependencies:
   - pillow
   - numpy
   - pandas
+  - tensorflow
+  - keras
   - imageio
   - imgaug
   - pip
