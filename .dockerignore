@@ -1,0 +1,5 @@
+data/*.h5
+data/dtd/
+logs/
+.pytest_cache/
+.ipynb_checkpoints/

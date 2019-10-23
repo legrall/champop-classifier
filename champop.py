@@ -22,7 +22,8 @@ BACKGROUNDS_PICKLE = 'data/backgrounds.pck'
 BACKGROUNDS_FOLDER = 'data/dtd'
 CARDS_PICKLE = 'data/cards.pck'
 LABELS_PATH = 'data/labels.txt'
-COCO_WEIGHTS_PATH = 'data/mask_rcnn_coco.h5'
+COCO_WEIGHTS_PATH = os.environ.get('COCO_WEIGHTS_PATH', 
+                    'data/mask_rcnn_coco.h5')
 DEFAULT_LOGS_DIR = 'logs/'
 IMAGE_HEIGHT = IMAGE_WIDTH = 1024
 
@@ -260,14 +261,14 @@ def train(model):
     labels = ['card']
     # Training dataset.
     dataset_train = ChampopDataset()
-    dataset_train.load_scenes(500, card_pickle_path=CARDS_PICKLE, 
+    dataset_train.load_scenes(10, card_pickle_path=CARDS_PICKLE, 
                     backgrounds_folder=BACKGROUNDS_FOLDER,
                     labels=labels, height=IMAGE_HEIGHT, width=IMAGE_WIDTH)
     dataset_train.prepare()
 
     # Validation dataset
     dataset_val = ChampopDataset()
-    dataset_val.load_scenes(60, card_pickle_path=CARDS_PICKLE, 
+    dataset_val.load_scenes(2, card_pickle_path=CARDS_PICKLE, 
                     backgrounds_folder=BACKGROUNDS_FOLDER,
                     labels=labels, height=IMAGE_HEIGHT, width=IMAGE_WIDTH)
     dataset_val.prepare()
@@ -299,7 +300,7 @@ if __name__ == '__main__':
     parser.add_argument('--dataset', required=False,
                         metavar="/path/to/balloon/dataset/",
                         help='Directory of the Balloon dataset')
-    parser.add_argument('--weights', required=True,
+    parser.add_argument('--weights', required=False,
                         metavar="/path/to/weights.h5",
                         help="Path to weights .h5 file or 'coco'")
     parser.add_argument('--logs', required=False,
@@ -347,7 +348,8 @@ if __name__ == '__main__':
                                   model_dir=args.logs)
 
     # Select weights file to load
-    if args.weights.lower() == "coco":
+    # if args.weights.lower() == "coco":
+    if True:
         weights_path = COCO_WEIGHTS_PATH
         # Download weights file
         if not os.path.exists(weights_path):
@@ -363,7 +365,8 @@ if __name__ == '__main__':
 
     # Load weights
     print("Loading weights ", weights_path)
-    if args.weights.lower() == "coco":
+    # if args.weights.lower() == "coco":
+    if True:
         # Exclude the last layers because they require a matching
         # number of classes
         model.load_weights(weights_path, by_name=True, exclude=[
