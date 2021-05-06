@@ -8,7 +8,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'flask-restful==0.3.7',
-        'flask-cors==3.0.8',
+        'flask-cors==3.0.9',
         'flask==1.1.0',
         'flasgger==0.9.2',
         'pytest==5.0.1',
